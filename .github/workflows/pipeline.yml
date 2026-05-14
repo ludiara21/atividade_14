@@ -1,0 +1,28 @@
+name: Pipeline de Teste Python
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  validar-projeto:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Fazer checkout do repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar ambiente Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Verificar versão do Python
+        run: python --version
+
+      - name: Executar aplicação principal
+        run: python app.py
+
+      - name: Executar testes automatizados
+        run: python teste_app.py
